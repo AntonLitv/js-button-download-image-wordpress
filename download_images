@@ -1,0 +1,50 @@
+<script type="text/javascript">
+  function foo_sr(ul) {
+    if(ul && ul != ''){
+      setTimeout(() => {
+        let j = document.getElementsByClassName('pp_overlay')[0];
+        j.setAttribute("style", "display: none;");
+        document.body.removeChild(j); 
+             }, 1000);
+        setTimeout(() => {
+        let h = document.getElementsByClassName('pp_pic_holder pp_default')[0];
+        h.setAttribute("style", "display: none;");
+        document.body.removeChild(h); 
+             }, 500);
+      var e = document.createElement('a'); 
+      e.setAttribute('href', ul); 
+      e.setAttribute('download', '');
+      document.body.appendChild(e); 
+      e.click(); 
+      document.body.removeChild(e); 
+    }
+  }
+// 
+  function foo_sp(ul,uk) {
+      let d,j,h;
+      if(ul && ul != ''){
+          d = ul.src;
+          if(uk && uk == 'new'){
+              j = ul.parentNode.parentNode.getElementsByTagName('span')[0];
+              if(j && j != ''){
+                  h = document.createElement('a');
+                  h.setAttribute("href", d);
+                  h.setAttribute("style", "display: block; ");
+                  h.setAttribute("download", '');
+                  h.setAttribute("class", "fa fa-download download_images_style_1");
+                  setTimeout(() => {
+                      j.appendChild(h);
+                  }, 100);
+              }
+          }
+          else{
+              j = ul.parentNode.parentNode.getElementsByTagName('span')[0].getElementsByTagName('a')[0];
+              if(j && j != ''){
+                  setTimeout(() => {
+                      ul.parentNode.getElementsByTagName('span')[0].removeChild(j);
+                  }, 100);
+              }
+          }
+      }
+  }
+</script>
