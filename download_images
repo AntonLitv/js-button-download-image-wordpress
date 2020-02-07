@@ -48,3 +48,142 @@
       }
   }
 </script>
+
+
+
+******************************
+Скрип создан для фотогалереи работающей на WordPress.
+Цель, создать кнопку Dowwnload для скачивания изображений из коллекции и модального слайдер.
+Кнопка размещается поверх изображения position:absolute;
+Шрифт кнопки fontawesome 4.7.
+Скрипт размещаем до тега <body>.
+Стили размещаем до тега <body>.
+
+
+*********************************
+
+Вызов 1 (начать загрузку).
+<span class="fa fa-download download_images_style_2" onclick="foo_sr('image_url');"></span>
+Создаем кнопку предварительно указав url адрес изображения для скачивания, можно формировать динамически. 
+При клике по кнопке, url передается в функцию.
+Функция проверяет url, закрывает два всплывающих div созданных при помощи jQ которая перехватывает событие родителя нашей кнопки.
+Далее создается новый тэг А с атрибутом href && download.
+Далее происходит клик по новому тэгу и он удаляется.
+Начинается скачивание файла.
+Вызов 1 размещаем в одном контейнере с изображением. 
+Контейнер должен быть позиционирован.
+например:
+<body>
+    <div>
+        <a style="position:relative;" href="#">
+            <img src="/preview-60x60.jpg">
+            <span class="fa fa-download download_images_style_2" onclick="foo_sr('/preview-1200x1200.jpg');"></span>
+        </a>
+        <a style="position:relative;" href="#">
+            <img src="/preview2-60x60.jpg">
+            <span class="fa fa-download download_images_style_2" onclick="foo_sr('/preview2-1200x1200.jpg');"></span>
+        </a>
+        <a style="position:relative;" href="#">
+            <img src="/preview3-60x60.jpg">
+            <span class="fa fa-download download_images_style_2" onclick="foo_sr('/preview3-1200x1200.jpg');"></span>
+        </a>
+    </div>
+</body
+В контейнере DIV срабатывает перехват события Onclick по тегу/контейнеру А, для открытия модального окна. 
+Это сделано в теме шаблона. 
+ 
+**************************
+ 
+<img src="www.www.ww/file.jpg" onload="foo_sp(this,'new')">
+Вызов 2 (создать кнопку)
+Срабатывает при загрузке изображения.
+Создаем кнопку копируя адрес изображения для скачивания из поля src изображения. 
+При 100% загрузке изображения, url передается в функцию.
+Функция проверяет url.
+Далее функция находит контейнер с тэгом Span на 1 в родителе на 1 уровень выше изображения.
+Далее создается в контейнере Span новый тэг А с атрибутом href && download.
+Cкачивание файла начинается при клике на кнопку.
+Вызов 2 размещаем в одном теге с изображением. 
+Контейнеры должны быть позиционированы.
+например
+<div>
+    <div>
+        <img src="www.www.ww/file.jpg" onload="foo_sp(this,'new')">
+    </div>
+    <div>
+        <p>Описание файла</p>
+        <span></span>
+    </div>
+</div>
+ 
+**************************
+
+<a href="#" onclick="foo_sp(this,'del')">Next</a>
+Вызов 3 (удалить кнопку)
+Удаляем кнопку при закрытии модального окна слайдера или при перелистывании слайдера.
+например
+<div>
+    <div>
+        <img src="www.www.ww/file.jpg" onload="foo_sp(this,'new')">
+    </div>
+    <div>
+        <a href="#" onclick="foo_sp(this,'del')">1</a>
+        <a href="#" onclick="foo_sp(this,'del')">2</a>
+        <a href="#" onclick="foo_sp(this,'del')">3</a>
+        <a href="#" onclick="foo_sp(this,'del')">4</a>
+        <span></span>
+        <a href="#" onclick="foo_sp(this,'del')">Close</a>
+    </div>
+</div>
+
+
+
+****************************
+Стили.
+
+<style>
+.download_images_style_0 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 32px;
+    top: 0;
+    line-height: 22px;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+        cursor:pointer;
+}
+ 
+ .download_images_style_1 {
+    display: none;
+    width:auto;
+    height:auto;
+    color: rgba(255,255,255,1);
+    margin:0;
+    padding:0;
+    font-size:15px;
+}
+ 
+.download_images_style_2{
+    position: absolute;
+    z-index: 500;
+    right: 15px;
+    bottom: 10px;
+    color: white;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 4px;
+    background-color: rgba(102,102,102,0.0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.download_images_style_2:hover{
+    background-color: rgba(102,102,102,0.5);
+}
+</style>
